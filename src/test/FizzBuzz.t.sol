@@ -15,4 +15,12 @@ contract FizzBuzzTest is DSTest {
         uint256 two = 1 + 1;
         assertEq(two, 3);
     }
+
+    function test_returns_buzz_when_divisible_by_five() public {
+        assertEq(fizzbuzz.fizzbuzz(5), "buzz");
+    }
+
+    function test_returns_number_as_string_otherwise() public {
+        assertEq(fizzbuzz.fizzbuzz(7), "7");
+    }
 }
