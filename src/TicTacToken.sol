@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity 0.8.13;
+
+contract TicTacToken {
+    string[9] public board; 
+
+    function getBoard() public view returns (string[9] memory) {
+        return board; 
+    }
+}
