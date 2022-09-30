@@ -15,7 +15,7 @@ contract TicTacTokenTest is DSTest {
 
     function test_cannot_mark_space_with_Z() public {
         vm.expectRevert("Invalid symbol"); 
-        ttt.markspace(0, "Z"); 
+        ttt.markSpace(0, "Z"); 
     }
 
 

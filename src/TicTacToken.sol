@@ -9,6 +9,15 @@ contract TicTacToken {
     }
 
     function markSpace(uint256 space, string calldata symbol) public {
+        require(_validSymbol(symbol), "Invalid symbol"); 
         board[space] = symbol; 
     }
+
+    function _validSymbol(string calldata symbol) internal pure returns (bool) {
+        return _compareStrings(symbol, "X") || _compareStrings(symbol, "O");
+    }
+    function _compareStrings(string memory a, string memory b) internal pure returns (bool) {
+        return keccak256(abi.encodePacked(a)) == keccak256(abi.encodePacked(b)); 
+    }
+
 }
