@@ -39,8 +39,9 @@ contract TicTacTokenTest is DSTest {
     }
 
     function test_can_mark_space_with_O() public {
-        ttt.markSpace(0, "O");
-        assertEq(ttt.board(0), "O"); 
+        ttt.markSpace(0, "X"); 
+        ttt.markSpace(1, "O");
+        assertEq(ttt.board(1), "O"); 
     }
 
     function test_cannot_overwrite_marked_space() public {
@@ -49,4 +50,19 @@ contract TicTacTokenTest is DSTest {
         vm.expectRevert("Already marked"); 
         ttt.markSpace(0, "O"); 
     }
+
+    function test_symbols_must_alternate() public {
+        ttt.markSpace(0, "X");
+        vm.expectRevert("Not your turn"); 
+        ttt.markSpace(1, "X");
+    }
+
+    function test_tracks_current_turn() public {
+        assertEq(ttt.currentTurn(), "X"); 
+        ttt.markSpace(0, "X");
+        assertEq(ttt.currentTurn(), "O");
+        ttt.markSpace(1, "O"); 
+        assertEq(ttt.currentTurn(), "X"); 
+    }
+
 }
