@@ -7,4 +7,8 @@ contract TicTacToken {
     function getBoard() public view returns (string[9] memory) {
         return board; 
     }
+
+    function markSpace(uint256 space, string calldata symbol) public {
+        board[space] = symbol; 
+    }
 }
