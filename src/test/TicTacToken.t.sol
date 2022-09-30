@@ -18,7 +18,6 @@ contract TicTacTokenTest is DSTest {
         ttt.markSpace(0, "Z"); 
     }
 
-
     function test_has_empty_board() public {
         for (uint256 i=0; i<9; i++) {
             assertEq(ttt.board(i), ""); 
@@ -42,5 +41,12 @@ contract TicTacTokenTest is DSTest {
     function test_can_mark_space_with_O() public {
         ttt.markSpace(0, "O");
         assertEq(ttt.board(0), "O"); 
+    }
+
+    function test_cannot_overwrite_marked_space() public {
+        ttt.markSpace(0, "X"); 
+
+        vm.expectRevert("Already marked"); 
+        ttt.markSpace(0, "O"); 
     }
 }

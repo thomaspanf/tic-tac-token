@@ -10,7 +10,12 @@ contract TicTacToken {
 
     function markSpace(uint256 space, string calldata symbol) public {
         require(_validSymbol(symbol), "Invalid symbol"); 
+        require(_emptySpace(space), "Already marked");
         board[space] = symbol; 
+    }
+
+    function _emptySpace(uint256 i) internal view returns (bool) {
+        return _compareStrings(board[i], ""); 
     }
 
     function _validSymbol(string calldata symbol) internal pure returns (bool) {
